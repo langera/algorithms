@@ -17,7 +17,7 @@ class MergeSort implements Sort {
         List<Integer> a = []
         int a1ptr = 0
         int a2ptr = 0
-        (0..a1.size() + a2.size() - 1).each { int i ->
+        for (int i=0; i < a1.size() + a2.size(); i++) {
             if (a1 != null && a1ptr < a1.size()) {
                 if (a2 != null && a2ptr < a2.size()) {
                     a << ((a1[a1ptr] < a2[a2ptr]) ? a1[a1ptr++] : a2[a2ptr++])

@@ -6,7 +6,7 @@ class InsertionSort implements Sort {
         if (a.size() < 2) {
             return a
         }
-        (1..a.size() - 1).each { int i ->
+        for (int i=1; i < a.size(); i++) {
             int key = a[i]
             int j = i - 1
             while (j >= 0 && a[j] > key) {
