@@ -11,11 +11,12 @@ class MaxSubArraySpec extends Specification {
     def 'run max sub-array'() {
 
     expect:
-        algorithm.findMaxSubArray([0, 1]) == new SubArraySum(sum: 1, from: 1, to: 2)
+        algorithm.findMaxSubArray([-1, 7]) == new SubArraySum(sum: 7, from: 1, to: 2)
         algorithm.findMaxSubArray([1, -4, 3, -4]) == new SubArraySum(sum: 3, from: 2, to: 3)
         algorithm.findMaxSubArray([13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]) ==
-                    new SubArraySum(sum: 43, from: 7, to: 11)
+                new SubArraySum(sum: 43, from: 7, to: 11)
+        algorithm.findMaxSubArray([-1, -4, -3]) == new SubArraySum(sum: -1, from: 0, to: 1)
     where:
-        algorithm << [ new BruteForceMaxSubArray(), new DivideAndConquerMaxSubArray() ]
+        algorithm << [new BruteForceMaxSubArray(), new DivideAndConquerMaxSubArray(), new DynamicProgrammingMaxSubArray()]
     }
 }
