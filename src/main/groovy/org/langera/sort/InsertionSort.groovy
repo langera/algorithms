@@ -2,6 +2,7 @@ package org.langera.sort
 
 class InsertionSort implements Sort {
 
+    @Override
     List<Integer> sort(List<Integer> a) {
         if (a.size() < 2) {
             return a
