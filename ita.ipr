@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AntConfiguration">
+    <defaultAnt bundledAnt="true" />
+  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions>
@@ -19,6 +22,9 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
   <component name="GradleSettings">
     <option name="gradleHome" value="$USER_HOME$/.gradle/wrapper/dists/gradle-1.2-bin/35oej0jnbfh6of4dd05531edaj/gradle-1.2" />
   </component>
@@ -169,7 +175,6 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/introduction_to_algorithms/introduction_to_algorithms.iml" filepath="$PROJECT_DIR$/introduction_to_algorithms/introduction_to_algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/ita.iml" filepath="$PROJECT_DIR$/ita.iml" />
     </modules>
   </component>
