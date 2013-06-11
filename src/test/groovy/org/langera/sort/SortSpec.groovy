@@ -22,6 +22,8 @@ class SortSpec extends Specification {
                        new MergeSort(),
                        new BubbleSort(),
                        new HeapSort(),
-                       new QuickSort()]
+                       new QuickSort(),
+                       new TailRecursiveQuickSort(),
+        ]
     }
 }
