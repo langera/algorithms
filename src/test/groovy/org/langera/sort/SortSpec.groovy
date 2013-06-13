@@ -45,7 +45,7 @@ class SortSpec extends Specification {
         int max = 10000
         Map<Sort, Long> avgTimeByAlgorithm = [:]
         algorithms.each { Sort sortAlgorithm ->
-            avgTimeByAlgorithm[sortAlgorithm.class.simpleName] = 0
+            avgTimeByAlgorithm[sortAlgorithm] = 0
         }
     expect:
         warmUp(algorithms, max)
