@@ -2,11 +2,11 @@ package org.langera.tree
 
 import org.langera.sort.SortOrdering
 
-class MaxHeap<T> {
+class MaxHeap<T> implements PriorityQueue<T> {
 
-    int heapSize = 0
-    SortOrdering<T> ordering
-    @Delegate List<T> array = []
+    private int heapSize = 0
+    private SortOrdering<T> ordering
+    private List<T> array = []
 
     int parentOf(int i) {
         return i / 2
@@ -33,6 +33,10 @@ class MaxHeap<T> {
     void insert(T value) {
         array[heapSize++] = value
         maxHeapIncreaseKey()
+    }
+
+    int size() {
+        return heapSize
     }
 
     private void maxHeapIncreaseKey() {

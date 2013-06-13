@@ -1,5 +1,8 @@
 package org.langera.sort
 
+import org.langera.tree.BinomialHeap
+import org.langera.tree.MaxHeap
+import org.langera.tree.PriorityQueueFactory
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -11,7 +14,8 @@ class SortSpec extends Specification {
     @Shared List<Sort> algorithms = [new InsertionSort(),
             new MergeSort(),
             new BubbleSort(),
-            new HeapSort(),
+            new HeapSort(factory: { new MaxHeap(ordering: it)  } as PriorityQueueFactory),
+            new HeapSort(factory: { new BinomialHeap(ordering: it)  } as PriorityQueueFactory),
             new QuickSort(),
             new TailRecursiveQuickSort(),
             new CountingSort(max: 10000),

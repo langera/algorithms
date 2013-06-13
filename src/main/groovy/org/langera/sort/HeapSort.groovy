@@ -1,18 +1,21 @@
 package org.langera.sort
 
-import org.langera.tree.MaxHeap
+import org.langera.tree.PriorityQueue
+import org.langera.tree.PriorityQueueFactory
 
 class HeapSort<T> implements Sort<T> {
 
+    PriorityQueueFactory<T> factory
+
     @Override
     List<T> sort(final List<T> a, final SortOrdering<T> ordering) {
-        MaxHeap<T> maxHeap = new MaxHeap<T>(ordering: ordering)
+        PriorityQueue<T> queue = factory.create(ordering)
         a.each { T item ->
-            maxHeap.insert(item)
+            queue.insert(item)
         }
         List<T> results = []
-        while (maxHeap.heapSize > 0) {
-            results << maxHeap.extractMax()
+        while (queue.size() > 0) {
+            results << queue.extractMax()
         }
         return results.reverse()
     }
