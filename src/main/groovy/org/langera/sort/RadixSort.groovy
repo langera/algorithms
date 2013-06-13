@@ -20,20 +20,24 @@ class RadixSort<T> implements Sort<T> {
         int d = floor(log(abs(max))/log(radix)) + 1
         List<T> result = a
         for (int i=0; i < d; i++) {
-            result = countingSort.sort(result, new SortOrderingByDigit<T>(radix: radix, digitIndex: i, original: ordering))
+            result = countingSort.sort(result, new SortOrderingByDigit<T>(i, ordering))
         }
         return result
     }
 
-    private static class SortOrderingByDigit<T> implements SortOrdering<T> {
+    private class SortOrderingByDigit<T> implements SortOrdering<T> {
 
-        int radix
-        int digitIndex
         SortOrdering<T> original
+        int dividend
+
+        SortOrderingByDigit(final int digitIndex, final SortOrdering<T> original) {
+            this.original = original
+            this.dividend = radix.power(digitIndex)
+        }
 
         @Override
         int sortValue(final T instance) {
-            int value = (original.sortValue(instance) / (radix.power(digitIndex)))
+            int value = original.sortValue(instance) / dividend
             return value == 0 ? 0 : value % radix
         }
     }
