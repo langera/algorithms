@@ -16,6 +16,7 @@ class SortSpec extends Specification {
             new TailRecursiveQuickSort(),
             new CountingSort(max: 10000),
             new RadixSort(10000),
+            new BucketSort(max: 10000),
     ]
 
     SortOrdering<Integer> ordering = { it } as SortOrdering
