@@ -1,9 +1,12 @@
 package org.langera.sort
 
+import groovy.transform.ToString
+
 import static java.lang.Math.abs
 import static java.lang.Math.floor
 import static java.lang.Math.log
 
+@ToString
 class RadixSort<T> implements Sort<T> {
 
     int max

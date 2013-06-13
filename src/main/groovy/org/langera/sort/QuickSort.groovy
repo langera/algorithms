@@ -1,5 +1,8 @@
 package org.langera.sort
 
+import groovy.transform.ToString
+
+@ToString
 class QuickSort<T> implements Sort<T> {
 
     @Override

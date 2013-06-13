@@ -1,5 +1,8 @@
 package org.langera.sort
 
+import groovy.transform.ToString
+
+@ToString
 class BucketSort<T> implements Sort<T> {
 
     int max

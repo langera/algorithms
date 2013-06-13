@@ -1,5 +1,8 @@
 package org.langera.sort
 
+import groovy.transform.ToString
+
+@ToString
 class CountingSort<T> implements Sort<T> {
 
     int max

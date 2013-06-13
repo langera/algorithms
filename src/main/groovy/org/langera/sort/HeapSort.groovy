@@ -19,4 +19,9 @@ class HeapSort<T> implements Sort<T> {
         }
         return results.reverse()
     }
+
+    @Override
+    String toString() {
+        return "${this.class.name}(${factory.create(null).class.name})"
+    }
 }

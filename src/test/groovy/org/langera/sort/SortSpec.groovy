@@ -25,7 +25,7 @@ class SortSpec extends Specification {
 
     SortOrdering<Integer> ordering = { it } as SortOrdering
 
-    @Unroll('#algorithm.class')
+    @Unroll('#algorithm')
     def 'run sort'() {
 
     expect:
@@ -43,7 +43,7 @@ class SortSpec extends Specification {
     def 'quickly hacked perf test sort'() {
     given:
         int max = 10000
-        Map<String, Long> avgTimeByAlgorithm = [:]
+        Map<Sort, Long> avgTimeByAlgorithm = [:]
         algorithms.each { Sort sortAlgorithm ->
             avgTimeByAlgorithm[sortAlgorithm.class.simpleName] = 0
         }
@@ -60,8 +60,8 @@ class SortSpec extends Specification {
                 long start = System.nanoTime()
                 sortAlgorithm.sort(copyToSort, ordering)
                 long end = System.nanoTime()
-                avgTimeByAlgorithm[sortAlgorithm.class.simpleName] =
-                        (avgTimeByAlgorithm[sortAlgorithm.class.simpleName] + (end - start)) / counter
+                avgTimeByAlgorithm[sortAlgorithm] =
+                        (avgTimeByAlgorithm[sortAlgorithm] + (end - start)) / counter
             }
         }
 
