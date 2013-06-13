@@ -1,5 +1,7 @@
 package org.langera.sort
 
+import org.langera.tree.MaxHeap
+
 class HeapSort<T> implements Sort<T> {
 
     @Override

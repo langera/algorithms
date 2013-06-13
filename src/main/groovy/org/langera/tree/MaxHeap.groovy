@@ -1,4 +1,6 @@
-package org.langera.sort
+package org.langera.tree
+
+import org.langera.sort.SortOrdering
 
 class MaxHeap<T> {
 
