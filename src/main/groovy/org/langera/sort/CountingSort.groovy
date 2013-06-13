@@ -1,22 +1,22 @@
 package org.langera.sort
 
-class CountingSort implements Sort {
+class CountingSort<T> implements Sort<T> {
 
     int max
 
     @Override
-    List<Integer> sort(final List<Integer> a) {
-        int[] counters = new int [max + 1]
+    List<T> sort(final List<T> a, final SortOrdering<T> ordering) {
+        int[] counters = new int[max + 1]
         for (int i = 0; i < a.size(); i++) {
-            counters[a[i]] += 1
+            counters[ordering.sortValue(a[i])] += 1
         }
         for (int i = 1; i <= max; i++) {
             counters[i] += counters[i - 1]
         }
-        List<Integer> b = new ArrayList<Integer>(a.size())
-        for (int i = 0; i < a.size(); i++) {
-            b[counters[a[i]] - 1] = a[i]
-            counters[a[i]] -= 1
+        List<T> b = new ArrayList<T>(a.size())
+        for (int i = a.size() - 1; i >= 0; i--) {
+            b[counters[ordering.sortValue(a[i])] - 1] = a[i]
+            counters[ordering.sortValue(a[i])] -= 1
         }
         return b
     }

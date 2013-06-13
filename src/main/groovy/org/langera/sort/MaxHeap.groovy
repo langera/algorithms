@@ -1,9 +1,10 @@
 package org.langera.sort
 
-class MaxHeap {
+class MaxHeap<T> {
 
     int heapSize = 0
-    @Delegate List<Integer> array = []
+    SortOrdering<T> ordering
+    @Delegate List<T> array = []
 
     int parentOf(int i) {
         return i / 2
@@ -17,17 +18,17 @@ class MaxHeap {
         return 2 * i + 1
     }
 
-    int extractMax() {
+    T extractMax() {
         if (heapSize == 0) {
             throw new IllegalStateException('Cannot extract from empty heap')
         }
-        int max = array[0]
+        T max = array[0]
         array[0] = array[--heapSize]
         maxHeapify(0)
         return max
     }
 
-    void insert(int value) {
+    void insert(T value) {
         array[heapSize++] = value
         maxHeapIncreaseKey()
     }
@@ -39,8 +40,8 @@ class MaxHeap {
         int ptr = heapSize - 1
         while (ptr > 0) {
             int parent = parentOf(ptr)
-            if (array[ptr] > array[parent]) {
-                int temp = array[ptr]
+            if (ordering.sortValue(array[ptr]) > ordering.sortValue(array[parent])) {
+                T temp = array[ptr]
                 array[ptr] = array[parent]
                 array[parent] = temp
                 ptr = parent
@@ -55,22 +56,20 @@ class MaxHeap {
         int l = leftChildOf(i)
         int r = rightChildOf(i)
         int indexOfLargest
-        if (l < heapSize && array[l] > array[i]) {
+        if (l < heapSize && ordering.sortValue(array[l]) > ordering.sortValue(array[i])) {
             indexOfLargest = l
         }
         else {
             indexOfLargest = i
         }
-        if (r < heapSize && array[r] > array[indexOfLargest]) {
+        if (r < heapSize && ordering.sortValue(array[r]) > ordering.sortValue(array[indexOfLargest])) {
             indexOfLargest = r
         }
         if (indexOfLargest != i) {
-            int temp = array[i]
+            T temp = array[i]
             array[i] = array[indexOfLargest]
             array[indexOfLargest] = temp
             maxHeapify(indexOfLargest)
         }
     }
-
-
 }

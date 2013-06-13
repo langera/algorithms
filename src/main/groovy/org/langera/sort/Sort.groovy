@@ -1,6 +1,6 @@
 package org.langera.sort
 
-public interface Sort {
+public interface Sort<T> {
 
-    List<Integer> sort(List<Integer> a)
+    List<T> sort(List<T> a, SortOrdering<T> ordering)
 }

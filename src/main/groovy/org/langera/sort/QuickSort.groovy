@@ -1,23 +1,23 @@
 package org.langera.sort
 
-class QuickSort implements Sort {
+class QuickSort<T> implements Sort<T> {
 
     @Override
-    List<Integer> sort(final List<Integer> a) {
+    List<T> sort(final List<T> a, final SortOrdering<T> ordering) {
         if (!a.empty) {
-            int pivotIndex = partition(a)
-            sort(a.subList(0, pivotIndex))
-            sort(a.subList(pivotIndex + 1, a.size()))
+            int pivotIndex = partition(a, ordering)
+            sort(a.subList(0, pivotIndex), ordering)
+            sort(a.subList(pivotIndex + 1, a.size()), ordering)
         }
         return a
     }
 
-    int partition(List<Integer> a) {
-        int pivot = a.last()
+    int partition(List<T> a, SortOrdering<T> ordering) {
+        T pivot = a.last()
         int pivotIndex = -1
         for (int i=0; i < a.size()-1; i++) {
-            if (a[i] <= pivot) {
-                int temp = a[++pivotIndex]
+            if (ordering.sortValue(a[i]) <= ordering.sortValue(pivot)) {
+                T temp = a[++pivotIndex]
                 a[pivotIndex] = a[i]
                 a[i] = temp
             }
