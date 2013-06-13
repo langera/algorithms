@@ -21,7 +21,6 @@ class SortSpec extends Specification {
             new CountingSort(max: 10000),
             new RadixSort(10000),
             new BucketSort(max: 10000),
-            new ConcurrentMergeSort(),
     ]
 
     SortOrdering<Integer> ordering = { it } as SortOrdering
