@@ -1,4 +1,4 @@
-package org.langera.tree
+package org.langera.search
 
 public interface PriorityQueue<T> {
 

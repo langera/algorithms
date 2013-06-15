@@ -1,7 +1,7 @@
 package org.langera.sort
 
-import org.langera.tree.PriorityQueue
-import org.langera.tree.PriorityQueueFactory
+import org.langera.search.PriorityQueue
+import org.langera.search.PriorityQueueFactory
 
 class HeapSort<T> implements Sort<T> {
 

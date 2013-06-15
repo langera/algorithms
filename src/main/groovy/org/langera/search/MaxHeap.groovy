@@ -1,4 +1,4 @@
-package org.langera.tree
+package org.langera.search
 
 import org.langera.sort.SortOrdering
 

@@ -1,8 +1,9 @@
 package org.langera.sort
 
-import org.langera.tree.BinomialHeap
-import org.langera.tree.MaxHeap
-import org.langera.tree.PriorityQueueFactory
+import org.langera.search.BinomialHeap
+import org.langera.search.MaxHeap
+import org.langera.search.PriorityQueueFactory
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -40,6 +41,7 @@ class SortSpec extends Specification {
         algorithm << algorithms
     }
 
+    @Ignore
     def 'quickly hacked perf test sort'() {
     given:
         int max = 10000
