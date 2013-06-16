@@ -19,7 +19,7 @@ class SearchTreeSpec extends Specification {
                 return tree
             } as SearchTreeFactory),
             new SearchTreeRoot(null, { _, item, __ ->
-                    def tree = new LexicographicRadixTree()
+                    def tree = new RadixTree()
                     tree.insert(item)
                     return tree
             } as SearchTreeFactory)

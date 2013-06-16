@@ -2,10 +2,10 @@ package org.langera.search
 
 import static java.lang.Math.max
 
-class LexicographicRadixTree implements SearchTree<String> {
+class RadixTree implements SearchTree<String> {
 
     boolean endOfWord = false
-    LexicographicRadixTree[] children = new LexicographicRadixTree[((int) 'z') + 1]
+    RadixTree[] children = new RadixTree[((int) 'z') + 1]
 
     @Override
     boolean contains(final String item) {
@@ -39,7 +39,7 @@ class LexicographicRadixTree implements SearchTree<String> {
         else {
             char c = item.charAt(index)
             if (!children[c]) {
-                children[c] = new LexicographicRadixTree()
+                children[c] = new RadixTree()
             }
             children[c].insertInternal(item, index + 1)
         }
@@ -47,7 +47,7 @@ class LexicographicRadixTree implements SearchTree<String> {
 
     @Override
     int size() {
-        int size = children.inject(0) { acc, LexicographicRadixTree child ->
+        int size = children.inject(0) { acc, RadixTree child ->
             acc + ((child) ? child.size() : 0)
         }
         return size + 1
@@ -58,7 +58,7 @@ class LexicographicRadixTree implements SearchTree<String> {
     int maxDepth() {
         int maxDepth = 0
 
-        children.each { LexicographicRadixTree child ->
+        children.each { RadixTree child ->
             if (child) {
                  maxDepth = max(maxDepth, child.maxDepth() + 1)
             }
