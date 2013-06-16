@@ -5,7 +5,7 @@ class SearchTreeRoot<T> implements SearchTree<T> {
 
     private Comparator<T> comparator
     private SearchTreeFactory<T> factory
-    private SearchTree<T> root
+    SearchTree<T> root
 
     SearchTreeRoot(final Comparator<T> comparator, final SearchTreeFactory<T> factory) {
         this.comparator = comparator
@@ -25,7 +25,7 @@ class SearchTreeRoot<T> implements SearchTree<T> {
     @Override
     void insert(final T item) {
         if (root == null) {
-            root = factory.create(item, comparator)
+            root = factory.create(this, item, comparator)
         }
         else {
             root.insert(item)
@@ -42,7 +42,12 @@ class SearchTreeRoot<T> implements SearchTree<T> {
     }
 
     @Override
+    int maxDepth() {
+        return (root) ? root.maxDepth() : 0
+    }
+
+    @Override
     String toString() {
-        return (root) ? root.class.name : factory.create(null, null).class.name
+        return (root) ? root.class.name : factory.create(this, '', null).class.name
     }
 }

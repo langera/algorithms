@@ -1,8 +1,8 @@
 package org.langera.search
 
-import groovy.transform.PackageScope
+import static java.lang.Math.max
 
-@PackageScope class IterativeBinarySearchTree<T> implements SearchTree<T> {
+class IterativeBinarySearchTree<T> implements SearchTree<T> {
 
     private Comparator<T> comparator
     IterativeBinarySearchTree left
@@ -63,5 +63,10 @@ import groovy.transform.PackageScope
     @Override
     int size() {
         return ((right) ? right.size() : 0) + ((left) ? left.size() : 0) + 1
+    }
+
+    @Override
+    int maxDepth() {
+        return max((left) ? left.maxDepth() : 0, (right) ? right.maxDepth() : 0) + 1
     }
 }

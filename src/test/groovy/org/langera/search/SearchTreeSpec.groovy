@@ -10,16 +10,26 @@ class SearchTreeSpec extends Specification {
 
     private static final Comparator<String> comparator = { String o1, String o2 -> o1.compareTo(o2) } as Comparator
 
-
     @Shared List<SearchTree> algorithms = [
-            new SearchTreeRoot(comparator, { item, comparator -> new RecursiveBinarySearchTree(item, comparator) } as SearchTreeFactory),
-            new SearchTreeRoot(comparator, { item, comparator -> new IterativeBinarySearchTree(item, comparator) } as SearchTreeFactory)
+            new SearchTreeRoot(comparator, { _, item, comparator -> new RecursiveBinarySearchTree(item, comparator) } as SearchTreeFactory),
+            new SearchTreeRoot(comparator, { _, item, comparator -> new IterativeBinarySearchTree(item, comparator) } as SearchTreeFactory),
+            new SearchTreeRoot(comparator, { root, item, comparator ->
+                def tree = new RedBlackTree(root, item, comparator)
+                tree.makeBlack()
+                return tree
+            } as SearchTreeFactory),
+            new SearchTreeRoot(null, { _, item, __ ->
+                    def tree = new LexicographicRadixTree()
+                    tree.insert(item)
+                    return tree
+            } as SearchTreeFactory)
     ]
 
     @Unroll('#algorithm')
     def 'run search'() {
     given:
         insertBook(algorithm)
+        println "$algorithm: size=${algorithm.size()} depth=${algorithm.maxDepth()}"
     expect:
         algorithm.contains('rabbit')
         !algorithm.contains('doesNotAppearInThisBook')
