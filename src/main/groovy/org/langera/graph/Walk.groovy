@@ -28,12 +28,16 @@ class Walk {
         queue.push(graph.vertex)
         while (!queue.isEmpty()) {
             Graph.Vertex v = queue.pop()
-            walk << v
-            v.neighbours.reverseEach { Graph.Vertex n ->
-                if (!n.visited) {
-                    n.visited = true
-                    queue.push(n)
+            if (v.neighbours.isEmpty() || !v.neighbours.find { Graph.Vertex n -> n.visited }) {
+                walk << v
+            }
+            Graph.Vertex next = v.neighbours.find { Graph.Vertex n -> !n.visited }
+            if (next) {
+                if (v.neighbours.find { Graph.Vertex n -> !n.visited }) {
+                    queue.push(v)
                 }
+                next.visited = true
+                queue.push(next)
             }
         }
         return walk

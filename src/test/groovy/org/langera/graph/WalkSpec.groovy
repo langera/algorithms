@@ -9,33 +9,41 @@ class WalkSpec extends Specification {
     Graph graph
 
     def setup() {
-        Graph.Vertex r = new Graph.Vertex(id: 'r')
-        Graph.Vertex s = new Graph.Vertex(id: 's')
-        Graph.Vertex t = new Graph.Vertex(id: 't')
-        Graph.Vertex u = new Graph.Vertex(id: 'u')
-        Graph.Vertex v = new Graph.Vertex(id: 'v')
-        Graph.Vertex w = new Graph.Vertex(id: 'w')
-        Graph.Vertex x = new Graph.Vertex(id: 'x')
-        Graph.Vertex y = new Graph.Vertex(id: 'y')
+        Graph.Vertex a = new Graph.Vertex(id: 'a')
+        Graph.Vertex b = new Graph.Vertex(id: 'b')
+        Graph.Vertex c = new Graph.Vertex(id: 'c')
+        Graph.Vertex d = new Graph.Vertex(id: 'd')
+        Graph.Vertex e = new Graph.Vertex(id: 'e')
+        Graph.Vertex f = new Graph.Vertex(id: 'f')
+        Graph.Vertex g = new Graph.Vertex(id: 'g')
+        Graph.Vertex h = new Graph.Vertex(id: 'h')
+        Graph.Vertex i = new Graph.Vertex(id: 'i')
+        Graph.Vertex j = new Graph.Vertex(id: 'j')
+        Graph.Vertex k = new Graph.Vertex(id: 'k')
+        Graph.Vertex l = new Graph.Vertex(id: 'l')
         graph = new Graph()
-        graph.vertex = r
-        r.neighbours += [v, s]
-        s.neighbours += [r, w]
-        t.neighbours += [u,w,x]
-        u.neighbours += [t,x,y]
-        v.neighbours += [r]
-        w.neighbours += [s,t,x]
-        x.neighbours += [w,t,u,y]
-        y.neighbours += [u,x]
+        graph.vertex = a
+        a.neighbours += [b,c,d]
+        b.neighbours += [e,f]
+        c.neighbours += []
+        d.neighbours += [g,h]
+        e.neighbours += [i,j]
+        f.neighbours += []
+        g.neighbours += [k,l]
+        h.neighbours += []
+        i.neighbours += []
+        j.neighbours += []
+        k.neighbours += []
+        l.neighbours += []
     }
 
     def 'bfs walk'() {
         expect:
-            walk.bfs(graph).collect { it.id }.join(',') == 'r,v,s,w,t,x,u,y'
+            walk.bfs(graph).collect { it.id }.join(',') == 'a,b,c,d,e,f,g,h,i,j,k,l'
     }
 
     def 'dfs walk'() {
     expect:
-        walk.dfs(graph).collect { it.id }.join(',') == 'r,v,s,w,t,u,y,x'
+        walk.dfs(graph).collect { it.id }.join(',') == 'a,b,e,i,j,f,c,d,g,k,l,h'
     }
 }
