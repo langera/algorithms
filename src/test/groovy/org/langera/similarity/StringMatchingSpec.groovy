@@ -16,6 +16,9 @@ class StringMatchingSpec extends Specification {
         algorithm.find('abcdefg', 'f') == 5
         algorithm.find('abcdefg', 'fg') == 5
     where:
-        algorithm << [ new NaiveStringMatching(), new RabinKarpStringMatching() ]
+        algorithm << [ new NaiveStringMatching(),
+                    new RabinKarpStringMatching(),
+                    new KMPStringMatching(),
+        ]
     }
 }
