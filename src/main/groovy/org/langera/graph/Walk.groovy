@@ -21,7 +21,7 @@ class Walk {
         return walk
     }
 
-    List<Graph.Vertex> dfs(Graph graph) {
+    List<Graph.Vertex> dfsWithStack(Graph graph) {
         List<Graph.Vertex> walk = []
         graph.vertex.visited = true
         Queue<Graph.Vertex> queue = new LinkedList<Graph.Vertex>()
@@ -42,5 +42,22 @@ class Walk {
         }
         return walk
     }
+
+    List<Graph.Vertex> dfsRecursive(Graph graph) {
+        List<Graph.Vertex> walk = []
+        dfsRecursiveInternal(graph.vertex, walk)
+        return walk
+    }
+
+    private void dfsRecursiveInternal(Graph.Vertex v, List<Graph.Vertex> walk) {
+        v.visited = true
+        walk.add(v)
+        v.neighbours.each { Graph.Vertex n ->
+            if (!n.visited) {
+                dfsRecursiveInternal(n, walk)
+            }
+        }
+    }
+
 
 }

@@ -42,8 +42,14 @@ class WalkSpec extends Specification {
             walk.bfs(graph).collect { it.id }.join(',') == 'a,b,c,d,e,f,g,h,i,j,k,l'
     }
 
-    def 'dfs walk'() {
+    def 'dfs walk (with stack)'() {
     expect:
-        walk.dfs(graph).collect { it.id }.join(',') == 'a,b,e,i,j,f,c,d,g,k,l,h'
+        walk.dfsWithStack(graph).collect { it.id }.join(',') == 'a,b,e,i,j,f,c,d,g,k,l,h'
+    }
+
+
+    def 'dfs walk (recursive)'() {
+    expect:
+        walk.dfsRecursive(graph).collect { it.id }.join(',') == 'a,b,e,i,j,f,c,d,g,k,l,h'
     }
 }
